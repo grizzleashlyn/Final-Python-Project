@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/bootstrap.css') }}" />
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <h1 class="align-middle ms-3">Hello World</h1>
+            <h2 class="fs-5 navbar-text ms-3">Travel planning made easy</h2>
+        </nav>
+        <hr>
+        <div class="d-flex justify-content-center">
+            <div class="contentBlock mx-auto">
+                <h2 class="text-info mt-3 ms-3">Register</h2>
+                <form action="/create_user" method="post" class="ms-3">
+                    <div class="text-danger">
+                        {% with messages = get_flashed_messages(category_filter=["register"]) %}
+                        {% if messages %}
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" name="first_name" class="form-control" id="floatingInput"
+                            placeholder="First Name">
+                        <label for="first_name">First Name:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" name="last_name" class="form-control" id="floatingInput"
+                            placeholder="Last Name">
+                        <label for="last_name">Last Name:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" name="email" class="form-control" id="floatingInput"
+                            placeholder="name@example.com">
+                        <label for="email">Email:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" name="password" class="form-control" id="floatingInput"
+                            placeholder="Password">
+                        <label for="password">Password:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" name="confirm_password" class="form-control" id="floatingInput"
+                            placeholder="Password">
+                        <label for="confirm_password">Confirm Password:</label>
+                    </div>
+                    <div class="mb-3 text-center">
+                        <input type="submit" value="Sign Up" class="btn btn-info mt-3 mb-3">
+                    </div>
+                </form>
+            </div>
+            <div class="contentBlock mx-auto">
+                <h2 class="text-info mt-3 ms-3">Login</h2>
+                <form action="/login" method="post" class="ms-3">
+                    <div class="text-danger">
+                        {% with messages = get_flashed_messages(category_filter=["login"]) %}
+                        {% if messages %}
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" name="email" class="form-control" id="floatingInput"
+                            placeholder="name@example.com">
+                        <label for="email">Email:</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" name="password" class="form-control" id="floatingInput"
+                            placeholder="Password">
+                        <label for="password">Password:</label>
+                    </div>
+                    <div class="mb-3 text-center">
+                        <input type="submit" value="Login" class="btn btn-info mt-3 mb-3">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

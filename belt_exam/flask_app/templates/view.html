@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/bootstrap.css') }}" />
+    <title>Trip Details</title>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar bg-primary navbar-expand-lg justify-content-between">
+            <h2 class="fs-5 navbar-text text-light ms-3">Hello, {{user.first_name}}</h2>
+            <div class="justify-content-right">
+                <a href="/dashboard" class="btn btn-light align-middle me-3">Dashboard</a>
+                <a href="/logout" class="btn btn-light align-middle me-3">Log Out</a>
+            </div>
+        </nav>
+        <hr>
+        <h1>{{trip.destination}}</h1>
+        <div class="container w-50 p-3 border border-dark">
+            <p>Start Date: {{trip.start_date}}</p>
+            <p>End Date: {{trip.end_date}}</p>
+            <p>Created On: {{trip.created_at}}</p>
+            <p>Last Updated: {{trip.updated_at}}</p>
+            <p>Organized By: {{trip.organizer}}</p>
+            <p>Itinerary: {{trip.itinerary}}</p>
+        </div>
+    </div>
+</body>
+
+</html>

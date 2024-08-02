@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/bootstrap.css') }}" />
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar bg-primary navbar-expand-lg justify-content-between">
+            <h2 class="fs-5 navbar-text text-light ms-3">Hello, {{user.first_name}}</h1>
+                <div class="justify-content-right">
+                    <a href="/logout" class="btn btn-light align-middle me-3">Log Out</a>
+                </div>
+        </nav>
+        <hr>
+        <h1>All Trips:</h1>
+        <table class="table table-bordered text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col" class="header text-light">Destination</th>
+                    <th scope="col" class="header text-light">Start Date</th>
+                    <th scope="col" class="header text-light">End Date</th>
+                    <th scope="col" class="header text-light">Organizer</th>
+                    <th scope="col" class="header text-light">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for one_trip in all_trips %}
+                <tr>
+                    <td class="rows">{{one_trip.destination}}</td>
+                    <td class="rows">{{one_trip.start_date}}</td>
+                    <td class="rows">{{one_trip.end_date}}</td>
+                    <td class="rows">{{one_trip.organizer}}</td>
+                    {% if one_trip.creator.id == user.id %}
+                    <td class="rows"><a href="/trips/edit/{{one_trip.id}}" class="btn btn-info">Edit</a></td>
+                    {% else %}
+                    <td class="rows"><a href="/trips/{{one_trip.id}}" class="btn btn-info">Details</a></td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="justify-content-between">
+            <a href="/trips/new" class="btn btn-light align-middle me-3">+ Plan a New Trip</a>
+        </div>
+    </div>
+</body>
+
+</html>

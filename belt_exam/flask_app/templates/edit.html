@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/bootstrap.css') }}" />
+    <title>View</title>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar bg-primary navbar-expand-lg justify-content-between">
+            <h2 class="fs-5 navbar-text text-light ms-3">Hello, {{user.first_name}}</h2>
+            <div class="justify-content-right">
+                <a href="/dashboard" class="btn btn-light align-middle me-3">Dashboard</a>
+                <a href="/logout" class="btn btn-light align-middle me-3">Log Out</a>
+            </div>
+        </nav>
+        <hr>
+        <div class="ms-3 mt-3 me-3">
+            <h1>Edit Trip</h1>
+            <form class="row g-3" action="/update" method="POST">
+                <input type="hidden" name="id" value="{{trip.id}}"></inputtype>
+                <div class="text-danger">
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <p>{{message}}</p>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label for="destination" class="form-label">Destination: </label>
+                    <input type="text" name="destination" value="{{trip.destination}}" class="form-control">
+                </div>
+                <div class="mb-3 col-md-4">
+                    <label for="start_date" class="form-label">Start Date: </label>
+                    <input type="date" name="start_date" value="{{trip.start_date}}" class="form-control" />
+                </div>
+                <div class="mb-3 col-md-4">
+                    <label for="end_date" class="form-label">End Date: </label>
+                    <input type="date" name="end_date" value="{{trip.end_date}}" class="form-control" />
+                </div>
+                <div class="mb-3 col-md-12">
+                    <label for="itinerary" class="form-label">Itinerary: </label>
+                    <input type="textarea" name="itinerary" value="{{trip.itinerary}}" class="form-control" />
+                </div>
+                <div class="mb-3 text-end">
+                    <button class="btn btn-success" type="submit">Update</button>
+                </div>
+            </form>
+            <a href="/delete/{{trip.id}}" class="btn btn-danger align-middle me-3">Delete This Trip</a>
+        </div>
+    </div>
+</body>
+
+</html>
